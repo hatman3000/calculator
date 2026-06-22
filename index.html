@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .ab {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 50px;
-            height: 100vh;
-
-        }
-        .screen span {
-            font-size: 72px
-        }
+      .ab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 50px;
+        height: 100vh;
+      }
+      .screen span {
+        font-size: 72px;
+      }
       .abc button {
         padding: 10px 20px;
       }
@@ -35,16 +34,23 @@
         <button value="6">6</button>
         <button value="7">7</button>
         <button value="8">8</button>
-        <button value="9"> 9</button>
+        <button value="9">9</button>
         <button value="0">0</button>
       </div>
     </div>
 
     <script>
-        let buttons = document.querySelector('.abc button');
-
-        buttons.foreach()
+      let buttons = document.querySelectorAll(".abc button");
+      let screen = document.querySelector(".screen span");
+      buttons.forEach(function(button) {
+        button.addEventListener(`click`, function () {
+          if (screen.textContent === "0") {
+            screen.textContent = this.value;
+          } else {
+            screen.textContent += this.value;
+          }
+        });
+      });
     </script>
-
   </body>
 </html>
