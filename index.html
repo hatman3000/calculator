@@ -19,6 +19,22 @@
       .abc button {
         padding: 10px 20px;
       }
+      .pindutan button:not(:last-of-type) {
+        padding: 5px 10px;
+      }
+      .pindutan button:last-of-type {
+        background-color: pink;
+        padding: 30px 50px;
+        border: 9px solid red;
+        border-radius: 15px 2px 15px 2px;
+        transition: 0.7s;
+      }
+      .pindutan button:last-of-type:hover {
+        background-color: blue;
+        border: 9px solid violet;
+        border-radius: 15px 2px 15px 2px;
+        color: #fff;
+      }
     </style>
   </head>
 
@@ -38,17 +54,23 @@
         <button value="0">0</button>
       </div>
       <div class="pindutan">
-        <button>add</button>
-        <button>minus</button>
-        <button>divide</button>
-        <button>multiply</button>
+        <button value="+">add</button>
+        <button value="-">minus</button>
+        <button value="/">divide</button>
+        <button value="*">multiply</button>
+        <button value="=">=</button>
       </div>
     </div>
 
     <script>
       let buttons = document.querySelectorAll(".abc button");
       let screen = document.querySelector(".screen span");
-      buttons.forEach(function(button) {
+      let operations = document.querySelector("pindutan button");
+
+      let numOne = "";
+      let operator = "";
+
+      buttons.forEach(function (button) {
         button.addEventListener(`click`, function () {
           if (screen.textContent === "0") {
             screen.textContent = this.value;
