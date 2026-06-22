@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        background-color: yellow;
+      }
       .ab {
         display: flex;
         align-items: center;
@@ -65,19 +68,38 @@
     <script>
       let buttons = document.querySelectorAll(".abc button");
       let screen = document.querySelector(".screen span");
-      let operations = document.querySelector("pindutan button");
+      let operations = document.querySelectorAll(
+        ".pindutan button:not(:last-of-type)",
+      );
+      let equal = document.querySelector(".pindutan button:last-of-type");
 
       let numOne = "";
       let operator = "";
 
       buttons.forEach(function (button) {
-        button.addEventListener(`click`, function () {
+        button.addEventListener("click", function () {
           if (screen.textContent === "0") {
             screen.textContent = this.value;
           } else {
             screen.textContent += this.value;
           }
         });
+      });
+
+      operations.forEach(function (button) {
+        button.addEventListener("click", function () {
+          numOne = screen.textContent;  
+          operator = this.value;  
+          screen.textContent = "0";
+        });
+      });
+
+      equal.addEventListener("click", function () {
+        let numTwo = screen.textContent;
+        let result = eval(numOne + operator + numTwo);
+        screen.textContent = result;
+        numOne = "";
+        operator = "";
       });
     </script>
   </body>
